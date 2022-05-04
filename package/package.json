@@ -1,5 +1,5 @@
 {
-  "name": "lia-pkg",
+  "name": "@LianeRada/lia-pkg",
   "version": "1.0.0",
   "description": "Testing packages",
   "main": "index.js",
