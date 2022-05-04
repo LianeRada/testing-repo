@@ -18,4 +18,4 @@ jobs:
           scope: '@LianeRada'
       - run: npm publish package
         env:
-          TEST_NPM_TOKEN: ${{ secrets.TEST_TOKEN }}
+          NODE_NPM_TOKEN: ${{ secrets.TEST_TOKEN }}
