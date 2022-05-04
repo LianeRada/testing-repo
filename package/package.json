@@ -1,0 +1,18 @@
+{
+  "name": "lia-pkg",
+  "version": "1.0.0",
+  "description": "Testing packages",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@LianeRada"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LianeRada/testing-repo.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

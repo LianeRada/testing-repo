@@ -1,0 +1,21 @@
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  publish-gpr:
+    runs-on: ubuntu-latest
+    if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@LianeRada'
+      - run: npm publish package
+        env:
+          TEST_NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
