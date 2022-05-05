@@ -1,4 +1,4 @@
-name: Version Increment
+name: Package Version Increment
 
 on:
   push:
