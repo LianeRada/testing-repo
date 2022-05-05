@@ -32,7 +32,7 @@ jobs:
 
       - name: Copy schema to package
         run: |
-          cp "./out/schema/schema.gql" "./apollo_package/schema.gql"
+          cp "./apollo_server/out/schema/schema.gql" "./apollo_package/schema.gql"
 
       - name: Commit files
         run: |
