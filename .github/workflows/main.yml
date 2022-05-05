@@ -43,7 +43,7 @@ jobs:
         uses: tj-actions/changed-files@v19
         with:
           files: |
-            **.prisma
+            schemas/**
       
       - name: Generate prisma if any of the above changed
         if: steps.changed-files-specific.outputs.any_changed == 'true'
