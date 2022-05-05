@@ -48,9 +48,9 @@ jobs:
       - name: Generate prisma if any of the above changed
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          echo "Schema was changed. Generating new file."
+          echo "Schema was changed. Generating new file. (docker-start/prisma-generate)"
 
-      - name: Copy the Readmes
+      - name: Copy schema to package
         run: |
           cp "./out/schema/schema.gql" "./apollo_package/schema.gql"
 
@@ -58,5 +58,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Add changes" -a
+          git commit -m "Update apollo_package schema" -a
           git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
