@@ -9,13 +9,46 @@ jobs:
   publish-gpr:
     runs-on: ubuntu-latest
     ##if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - uses: actions/setup-node@v1
+    #     with:
+    #       node-version: 12
+    #       registry-url: https://npm.pkg.github.com/
+    #       scope: '@LianeRada'
+    #   - run: npm publish package
+    #     env:
+    #       NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v2
         with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@LianeRada'
-      - run: npm publish package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
+          node-version: '12.x'
+          
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v19
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+      # - name: Copy the Readmes
+      #   run: |
+      #     find ./myfolder/ -type f -name "README.md" | while read fname; do
+      #       dirname=`dirname "$fname"`
+      #       foldername=`basename "$dirname"`
+      #       filename=`basename "$fname"`
+      #       newname=`echo "$dirname" | sed -e "s/ /_/g"`
+      #       cp "./out/schema/schema.gql" "./docs/_myfolder/${foldername}.md"
+      #     done
+      # - name: Commit files
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     git commit -m "Add changes" -a
+      #     git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
