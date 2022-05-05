@@ -1,9 +1,9 @@
-name: Package Version Increment
+name: Version Increment
 
 on:
   push:
     branches:
-      - master
+      - development
 
 jobs:
   version:
