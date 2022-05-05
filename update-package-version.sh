@@ -6,10 +6,8 @@ if ! git diff-index --quiet HEAD --; then
   exit
 fi
 
-bump=$1
-
 cd apollo_package
-npm --no-git-tag-version version "$bump" > ../version.txt
+npm --no-git-tag-version version > ../version.txt
 cd ..
 
 git add .
