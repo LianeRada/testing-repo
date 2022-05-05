@@ -1,6 +1,6 @@
 {
   "name": "@lianerada/lia-pkg",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Testing packages",
   "main": "index.js",
   "publishConfig": {
