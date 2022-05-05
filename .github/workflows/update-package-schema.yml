@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@LianeRada'
 
       - name: Get changed schema files
         id: changed-files
@@ -47,3 +49,7 @@ jobs:
           git config --local user.name "GitHub Action"
           npm --prefix ./apollo_package version patch -m "[RELEASE] %s"
           git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
+
+      - run: npm publish apollo_package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
