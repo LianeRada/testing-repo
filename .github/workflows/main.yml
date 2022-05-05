@@ -27,16 +27,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-          
+
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v19
 
       - name: List all changed files
+        if: contains(steps.changed-files.outputs.modified_files, '*.prisma')
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+          echo "Schema was changed. Generating new file."
       # - name: Copy the Readmes
       #   run: |
       #     find ./myfolder/ -type f -name "README.md" | while read fname; do
