@@ -7,11 +7,11 @@ if ! git diff-index --quiet HEAD --; then
 fi
 
 cd apollo_package
-npm --no-git-tag-version version > ../version.txt
+npm version --no-git-tag-version patch > ../version.txt
 cd ..
 
 git add .
-git commit -m "$(< version.txt)"
+git commit -m "[RELEASE] $(< version.txt)"
 git push
 
 rm version.txt
