@@ -43,12 +43,12 @@ jobs:
         uses: tj-actions/changed-files@v19
         with:
           files: |
-            schemas/**
+            schemas/*
       
       - name: Generate prisma if any of the above changed
-        ##if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo $steps.changed-files-specific.outputs.any_changed
+          echo "One or more files listed above has changed."
 
       # - name: List all changed files
       #   if: contains(steps.changed-files.outputs.modified_files, '*.prisma')
