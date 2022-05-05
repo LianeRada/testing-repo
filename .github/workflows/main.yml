@@ -1,0 +1,35 @@
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  publish-gpr:
+    runs-on: ubuntu-latest
+    if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - uses: actions/setup-node@v1
+    #     with:
+    #       node-version: 12
+    #       registry-url: https://npm.pkg.github.com/
+    #       scope: '@LianeRada'
+    #   - run: npm publish package
+    #     env:
+    #       NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@LianeRada'
+
+      - run: npm publish apollo_package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
