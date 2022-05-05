@@ -50,22 +50,13 @@ jobs:
         run: |
           echo "Schema was changed. Generating new file."
 
-      # - name: List all changed files
-      #   if: contains(steps.changed-files.outputs.modified_files, '*.prisma')
-      #   run: |
-      #     echo "Schema was changed. Generating new file."
-      # - name: Copy the Readmes
-      #   run: |
-      #     find ./myfolder/ -type f -name "README.md" | while read fname; do
-      #       dirname=`dirname "$fname"`
-      #       foldername=`basename "$dirname"`
-      #       filename=`basename "$fname"`
-      #       newname=`echo "$dirname" | sed -e "s/ /_/g"`
-      #       cp "./out/schema/schema.gql" "./docs/_myfolder/${foldername}.md"
-      #     done
-      # - name: Commit files
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
-      #     git commit -m "Add changes" -a
-      #     git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
+      - name: Copy the Readmes
+        run: |
+          cp "./out/schema/schema.gql" "./apollo_package/schema.gql"
+
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Add changes" -a
+          git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
