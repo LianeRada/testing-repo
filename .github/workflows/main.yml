@@ -48,7 +48,7 @@ jobs:
       - name: Generate prisma if any of the above changed
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          echo "One or more files listed above has changed."
+          echo "${{ steps.changed-files-specific.outputs }}"
 
       # - name: List all changed files
       #   if: contains(steps.changed-files.outputs.modified_files, '*.prisma')
