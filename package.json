@@ -1,6 +1,6 @@
 {
-  "name": "@lianerada/lia-pkg",
-  "version": "1.0.1",
+  "name": "database",
+  "version": "1.0.0",
   "description": "Testing packages",
   "main": "index.js",
   "scripts": {
