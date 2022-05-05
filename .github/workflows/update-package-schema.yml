@@ -49,5 +49,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Update apollo_package schema"
+          git commit -m "Update apollo_package schema" -a
           git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
