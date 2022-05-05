@@ -46,9 +46,9 @@ jobs:
             schemas/*
       
       - name: Generate prisma if any of the above changed
-        #if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          echo "${{ steps.changed-files.outputs }}"
+          echo "Schema was changed. Generating new file."
 
       # - name: List all changed files
       #   if: contains(steps.changed-files.outputs.modified_files, '*.prisma')
