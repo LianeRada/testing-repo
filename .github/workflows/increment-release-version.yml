@@ -21,7 +21,3 @@ jobs:
       - name: 'Update package patch version'
         run: |
           echo ${{ github.event.head_commit.message  }}
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          npm version patch -m "[RELEASE] %s"
-          git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
