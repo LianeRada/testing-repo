@@ -9,17 +9,6 @@ jobs:
   #publish-gpr:
   update-package:
     runs-on: ubuntu-latest
-    ##if: "startsWith(github.event.head_commit.message, '[RELEASE]')"
-    # steps:
-    #   - uses: actions/checkout@v2
-    #   - uses: actions/setup-node@v1
-    #     with:
-    #       node-version: 12
-    #       registry-url: https://npm.pkg.github.com/
-    #       scope: '@LianeRada'
-    #   - run: npm publish package
-    #     env:
-    #       NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -49,5 +38,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Update apollo_package schema" -a
+          git commit -m "[PACKAGE] Update apollo_package schema" -a
           git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
