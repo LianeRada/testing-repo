@@ -31,7 +31,7 @@ jobs:
       - name: Generate prisma if any of the above changed
         #if: steps.changed-files.outputs.any_changed == 'true'
         - check-changed-files-or-halt:
-          pattern: ^schemas/
+            pattern: ^schemas/
 
       # - name: Get changed schema files
       #   id: changed-files
