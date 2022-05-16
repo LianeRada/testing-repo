@@ -5,14 +5,6 @@ on:
     branches:
       - development
 
-commands:
-  check-changed-files-or-halt:
-    parameters:
-      pattern:
-        type: string
-    steps:
-      - run: git show -m HEAD --name-only --pretty="" | egrep -q '<< parameters.pattern >>' || circleci step halt
-
 jobs:
   #publish-gpr:
   update-package:
@@ -28,8 +20,10 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@LianeRada'
 
-      - check-changed-files-or-halt:
-        pattern: ^schemas/
+      - name: Generate prisma if any of the above changed
+        #if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git show -m HEAD --name-only --pretty="" | egrep -q '<< ^schemas/ >>' || circleci step halt
 
       # - name: Get changed schema files
       #   id: changed-files
