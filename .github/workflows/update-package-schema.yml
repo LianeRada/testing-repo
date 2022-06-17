@@ -1,0 +1,60 @@
+name: Update package schema
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  #publish-gpr:
+  update-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@LianeRada'
+
+      - name: Generate prisma if any of the above changed
+        #if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          git show -m HEAD --name-only --pretty="" | egrep -q '<< ^schemas/ >>'
+
+      # - name: Get changed schema files
+      #   id: changed-files
+      #   uses: tj-actions/changed-files@v19
+      #   with:
+      #     files: |
+      #       schemas/*
+      
+      # - name: Generate prisma if any of the above changed
+      #   if: steps.changed-files.outputs.any_changed == 'true'
+      #   run: |
+      #     echo "Schema was changed. Generating new file. (docker-start/prisma-generate)"
+
+      # - name: Copy schema to package
+      #   run: |
+      #     cp "./apollo_server/out/schema/schema.gql" "./apollo_package/schema.gql"
+
+      # - name: Commit files
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     git commit -m "[PACKAGE] Update apollo_package schema" -a
+      #     git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
+
+      # - name: 'Update package patch version'
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+      #     sudo sh ./update-package-version.sh
+      #     git push https://@github.com/LianeRada/testing-repo.git HEAD:development --follow-tags
+
+      # - run: npm publish apollo_package
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.TEST_TOKEN }}
